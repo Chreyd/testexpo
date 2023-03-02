@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
 
 const App = () => {
@@ -33,18 +34,19 @@ const App = () => {
   ];
   const [family, setFamily] = useState(obj);
 
-  const display = family.map((x) => {
-    return (
-      <View key={x.id} style={styles.display}>
-        <Text style={styles.text}>{x.name} </Text>
-        <Text style={styles.text}>{x.age} </Text>
-      </View>
-    );
-  });
+  const renderItem = ({ item }) => (
+    <View style={styles.display}>
+      <Text style={styles.text}> {item.name} </Text>
+      <Text style={styles.text}> {item.age} </Text>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
-      <ScrollView>{display}</ScrollView>
+      <ScrollView>
+        {/* {display} */}
+        <FlatList data={obj} renderItem={renderItem} />
+      </ScrollView>
     </View>
   );
 };
