@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   FlatList,
+  VirtualizedList,
 } from "react-native";
 
 const App = () => {
@@ -43,10 +44,14 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <>
         {/* {display} */}
-        <FlatList data={obj} renderItem={renderItem} />
-      </ScrollView>
+        <FlatList
+          data={family}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      </>
     </View>
   );
 };
