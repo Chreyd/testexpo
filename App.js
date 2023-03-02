@@ -1,42 +1,52 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-const App= ()=> {
+const Person = (props) => {
+  return (
+    <>
+      {props.age ? (
+        <Text style={styles.text}>
+          Je suis {props.name} j'ai {props.age} : {props.children}
+        </Text>
+      ) : (
+        <Text style={styles.text}>
+          Je suis {props.name} : {props.children}
+        </Text>
+      )}
+    </>
+  );
+};
 
-  const getName = (firsName, secondName, tirdName, lastName )=>{
-    return firsName +' '+ secondName+' '+ tirdName+ ' '+ lastName
-  }
-
+const App = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>je m'appelle {getName('LOLANGOY', 'MAPEBA', 'Fleudry','Chreyd')} </Text>
-
+      <Person name="Chreyd">Homme</Person>
+      <Person name="Melly">Femme</Person>
+      <Person name="Jerry" age="22ans">Femme</Person>
     </View>
   );
-}
-const styles=StyleSheet.create({
-    container:{
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#000'
-    },
-    text:{
-      fontSize: 40,
-      color: '#FFF'
-    },
-    text2:{
-      fontSize: 40,
-      fontWeight: 'bold',
-      marginBottom: 2,
-      color: '#FFF'
-
-    },
-    text3:{
-      fontSize: 40,
-      color: '#FFF'
-
-    }
-})
+};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#700",
+  },
+  text: {
+    fontSize: 20,
+    color: "#FFF",
+  },
+  text2: {
+    fontSize: 40,
+    fontWeight: "bold",
+    marginBottom: 2,
+    color: "#FFF",
+  },
+  text3: {
+    fontSize: 40,
+    color: "#FFF",
+  },
+});
 
 export default App;
