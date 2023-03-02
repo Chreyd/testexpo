@@ -1,28 +1,35 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const Person = (props) => {
-  return (
-    <>
-      {props.age ? (
-        <Text style={styles.text}>
-          Je suis {props.name} j'ai {props.age} : {props.children}
-        </Text>
-      ) : (
-        <Text style={styles.text}>
-          Je suis {props.name} : {props.children}
-        </Text>
-      )}
-    </>
-  );
-};
 
 const App = () => {
+  const [count, setCount] = useState(0);
+  const [name, setName] = useState("Chreyd");
+
+  const change = (arg)=>{
+    setName(arg);
+  };
+
   return (
+
     <View style={styles.container}>
-      <Person name="Chreyd">Homme</Person>
-      <Person name="Melly">Femme</Person>
-      <Person name="Jerry" age="22ans">Femme</Person>
+      <Text style={styles.text}>
+        Je suis {name}
+      </Text>
+      <Button title='Clicquez ici' onPress={()=>change('Fleudry')
+      }/>
+      <Text style={styles.text}>{count}</Text>
+      <Button
+        title="Augmanter de 1"
+        disabled={false}
+        onPress={() => setCount(count + 1)}
+      />
+      <Button
+        title="Diminuer de 1"
+        color="red"
+        onPress={() => setCount(count - 1)}
+        disabled={count == 0 ? true : false}
+      />
     </View>
   );
 };
@@ -38,14 +45,14 @@ const styles = StyleSheet.create({
     color: "#FFF",
   },
   text2: {
-    fontSize: 40,
+    fontSize: 20,
     fontWeight: "bold",
     marginBottom: 2,
     color: "#FFF",
   },
   text3: {
-    fontSize: 40,
-    color: "#FFF",
+    fontSize: 20,
+    color: "#0F0",
   },
 });
 
