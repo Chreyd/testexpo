@@ -1,23 +1,42 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
-
 const App = () => {
   const [count, setCount] = useState(0);
   const [name, setName] = useState("Chreyd");
 
-  const change = (arg)=>{
+  const obj = {
+    name: "Spiderman",
+    age: 30,
+  };
+  const handlePress = () => {
+    setInfos({
+      name: "Batman",
+      age: 37,
+    });
+  };
+  const [infos, setInfos] = useState(obj);
+
+  const change = (arg) => {
     setName(arg);
   };
 
   return (
-
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Je suis {name}
-      </Text>
-      <Button title='Clicquez ici' onPress={()=>change('Fleudry')
-      }/>
+      <Text style={styles.text3}>{infos.name} </Text>
+      <Text style={styles.text3}>{infos.age} </Text>
+      <Button
+        title="Cliquez ici"
+        onPress={() =>
+          setInfos({
+            name: "Batman",
+            age: 37,
+          })
+        }
+      />
+
+      <Text style={styles.text}>Je suis {name}</Text>
+      <Button title="Clicquez ici" onPress={() => change("Fleudry")} />
       <Text style={styles.text}>{count}</Text>
       <Button
         title="Augmanter de 1"
