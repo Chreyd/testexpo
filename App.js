@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, Alert } from "react-native";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
 
 const App = () => {
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if( count > 3 ){
+      setMyProduct([]);
+    }
+  }, [count])
+
   const [myProduct, setMyProduct] = useState([]);
+
+ 
 
   const submitHandler = (product, setProduct) => {
     if (product != '') {
@@ -15,29 +26,14 @@ const App = () => {
       ]);
     }
     else{
-      alert('Le champ est vide')
       Alert.alert('Oups!!!','Veuillez Remplir le champ',[
         {
           text: 'COMPRIS',
-          onPress: ()=> console.warn('Refusé'),
-          style: "destructive"
-        },
-        {
-          text: 'Bien Compris',
-          onPress: ()=> console.warn('Refusé'),
-          style: "destructive"
-        },
-        {
-          text: 'Bien Compris',
-          onPress: ()=> console.warn('Refusé'),
-          style: "destructive"
-        },
-        {
-          text: 'Bien Compris',
-          onPress: ()=> console.warn('Refusé'),
+          onPress: ()=> {setCount(count+1); console.warn(count)},
           style: "destructive"
         }
       ],
+
       {
         cancelable: true,
         onDismiss: () => console.warn('Dismiss')
@@ -45,6 +41,8 @@ const App = () => {
     )
     }
   };
+
+
 
   const deleteProduct = (key) => {
     setMyProduct((currentMyProduct) => {
