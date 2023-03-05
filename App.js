@@ -18,7 +18,11 @@ const App = () => {
 
   const [myProduct, setMyProduct] = useState([]);
   const submitHandler = () => {
-    setMyProduct((currentMyProduct) => [...currentMyProduct, product]);
+    const idString = Date.now().toString();
+    setMyProduct((currentMyProduct) => [
+      { key: idString, name: product },
+      ...currentMyProduct,
+    ]);
     setProduct("");
   };
 
@@ -33,16 +37,16 @@ const App = () => {
         />
         <Button title="Valider" onPress={submitHandler} />
       </View>
-      <ScrollView>
+      <View>
         <View style={styles.items}>
-          {myProduct.map((produit, index) => (
-            <Text key={index} style={styles.element}>
-              {produit}
-            </Text>
-          ))}
+          <FlatList
+            data={myProduct}
+            renderItem={({ item }) => (
+              <Text style={styles.element}>{item.name}</Text>
+            )}
+          />
         </View>
-        <Text> {product} </Text>
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   textInput: {
     borderColor: "grey",
