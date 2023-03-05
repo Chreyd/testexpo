@@ -8,7 +8,7 @@ import AddProduct from "./components/AddProduct";
 import Product from './components/Product';
 
 
-const App = () => {
+const App = () => { 
 
 
   const [myProduct, setMyProduct] = useState([]);
