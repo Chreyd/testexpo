@@ -12,13 +12,13 @@ const App = () => {
 
 
   const [myProduct, setMyProduct] = useState([]);
+
   const submitHandler = (product, setProduct) => {
     const idString = Date.now().toString();
     setMyProduct((currentMyProduct) => [
       { key: idString, name: product },
       ...currentMyProduct,
     ])
-    setProduct("")
   };
 
   return (

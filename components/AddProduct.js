@@ -2,10 +2,17 @@ import React ,{useState} from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 const AddProduct = (props) => {
+
+
   const [product, setProduct] = useState("");
   const inputHandler = (val) => {
     setProduct(val);
   };
+
+  const handleClick= ()=>{
+    props.submitHandler(product);
+    setProduct('')
+  }
 
   return (
     <View style={styles.inputContainer}>
@@ -15,7 +22,7 @@ const AddProduct = (props) => {
         onChangeText={(val) => inputHandler(val)}
         value={product}
       />
-      <Button title="Valider" onPress={()=>props.submitHandler(product, setProduct)} />
+      <Button title="Valider" onPress={handleClick} />
     </View>
   );
 };
