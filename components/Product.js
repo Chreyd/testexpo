@@ -10,19 +10,11 @@ import {
 } from "react-native";
 import React from "react";
 
-const Product = (props) => {
+const Product = ({ name, deleteProduct, idString }) => {
   return (
-    <Pressable
-      onPress={() => console.log(props.name)}
-      style={({ pressed }) => [
-        {
-          backgroundColor: pressed ? "#00F" : "#F00",
-        },
-      ]}
-      delayLongPress={4000}
-    >
+    <Pressable onPress={() => deleteProduct(idString)}>
       <View style={styles.items}>
-        <Text style={styles.element}>{props.name}</Text>
+        <Text style={styles.element}>{name}</Text>
       </View>
     </Pressable>
   );
