@@ -13,7 +13,7 @@ import React from "react";
 const Product = (props) => {
   return (
     <Pressable
-      onLongPress={() => console.log(props.name)}
+      onPress={() => console.log(props.name)}
       style={({ pressed }) => [
         {
           backgroundColor: pressed ? "#00F" : "#F00",
