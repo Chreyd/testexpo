@@ -11,77 +11,67 @@ import {
 } from "react-native";
 
 const App = () => {
-  const obj = [
-    { id: 1, name: "aaaaa", age: 25 },
-    { id: 2, name: "bbbb", age: 23 },
-    { id: 3, name: "cccc", age: 20 },
-    { id: 4, name: "dddd", age: 15 },
-    { id: 5, name: "eeee", age: 5 },
-    { id: 6, name: "aaaaa", age: 25 },
-    { id: 7, name: "bbbb", age: 23 },
-    { id: 8, name: "cccc", age: 20 },
-    { id: 9, name: "dddd", age: 15 },
-    { id: 10, name: "eeee", age: 5 },
-    { id: 11, name: "aaaaa", age: 25 },
-    { id: 12, name: "bbbb", age: 23 },
-    { id: 13, name: "cccc", age: 20 },
-    { id: 14, name: "dddd", age: 15 },
-    { id: 15, name: "eeee", age: 5 },
-    { id: 16, name: "aaaaa", age: 25 },
-    { id: 17, name: "bbbb", age: 23 },
-    { id: 18, name: "cccc", age: 20 },
-    { id: 19, name: "dddd", age: 15 },
-    { id: 20, name: "eeee", age: 5 },
-  ];
-  const [family, setFamily] = useState(obj);
+  const [product, setProduct] = useState("");
+  const inputHandler = (val) => {
+    setProduct(val);
+  };
 
-  const renderItem = ({ item }) => (
-    <View style={styles.display}>
-      <Text style={styles.text}> {item.name} </Text>
-      <Text style={styles.text}> {item.age} </Text>
-    </View>
-  );
+  const [myProduct, setMyProduct] = useState([]);
+  const submitHandler = () => {
+    setMyProduct((currentMyProduct) => [...currentMyProduct, product]);
+    setProduct("");
+  };
 
   return (
     <View style={styles.container}>
-      <>
-        {/* {display} */}
-        <FlatList
-          data={family}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Nouveau produit"
+          onChangeText={(val) => inputHandler(val)}
+          value={product}
         />
-      </>
+        <Button title="Valider" onPress={submitHandler} />
+      </View>
+      <ScrollView>
+        <View style={styles.items}>
+          {myProduct.map((produit, index) => (
+            <Text key={index} style={styles.element}>
+              {produit}
+            </Text>
+          ))}
+        </View>
+        <Text> {product} </Text>
+      </ScrollView>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#700",
+    padding: 40,
+    paddingTop: 60,
   },
-  display: {
+  inputContainer: {
     flexDirection: "row",
-    backgroundColor: "#aba",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  text: {
-    fontSize: 20,
-    color: "#FFF",
-  },
-  text2: {
-    fontSize: 20,
-    color: "#0F0",
+    paddingBottom: 10
   },
   textInput: {
-    backgroundColor: "#fff",
-    height: 30,
+    borderColor: "grey",
+    borderWidth: 1,
+    padding: 5,
+    paddingLeft: 9,
+    fontSize: 18,
     borderRadius: 5,
+    flexGrow: 1,
+  },
+  items: {
+    marginTop: 10,
+  },
+  element: {
+    backgroundColor: "#ffb6c1",
+    padding: 20,
+    fontSize: 17,
+    marginVertical: 6,
   },
 });
 
