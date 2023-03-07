@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React ,{useState, useEffect} from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 const AddProduct = (props) => {
@@ -22,7 +22,7 @@ const AddProduct = (props) => {
         onChangeText={(val) => inputHandler(val)}
         value={product}
       />
-      <Button title="Valider" onPress={handleClick} />
+      <Button title="Valider" onPress={handleClick}/>
     </View>
   );
 };
