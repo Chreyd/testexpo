@@ -21,6 +21,10 @@ const AddProduct = (props) => {
         placeholder="Nouveau produit"
         onChangeText={(val) => inputHandler(val)}
         value={product}
+        maxLength={9}
+        secureTextEntry
+        editable={false}
+        multiline
       />
       <Button title="Valider" onPress={handleClick}/>
     </View>
@@ -29,7 +33,6 @@ const AddProduct = (props) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flexDirection: "row",
     paddingBottom: 10,
   },
   textInput: {
@@ -40,6 +43,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderRadius: 5,
     flexGrow: 1,
+    marginBottom: 9,
   },
 });
 
