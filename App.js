@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
+import DismissKeyboard from "./components/DismissKeyboard";
 
 const App = () => {
   const [myProduct, setMyProduct] = useState([]);
@@ -35,52 +36,54 @@ const App = () => {
   };
 
   return (
-    <View style={styles.container}  >
-      <Modal
-        visible={showModal}
-        onRequestClose={() => setShowModal(false)}
-        animationType="slide"
-        hardwareAccelerated={true}
-        transparent
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContet}>
-            <View style={styles.modalHeader}>
-              <Text style={styles.modalHeaderText}>OUPS!!!</Text>
-            </View>
-            <View style={styles.modalBody}>
-              <Text style={styles.modalBodyText}>
-                Veuillez saisir des données valides
-              </Text>
-            </View>
-            <View style={styles.modalFooter}>
-              <TouchableOpacity
-                style={styles.pressableBtnModal}
-                onPress={() => setShowModal(false)}
-              >
-                <Text style={styles.modalBtn}>Ok</Text>
-              </TouchableOpacity>
+    <DismissKeyboard>
+      <View style={styles.container}>
+        <Modal
+          visible={showModal}
+          onRequestClose={() => setShowModal(false)}
+          animationType="slide"
+          hardwareAccelerated={true}
+          transparent
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContet}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalHeaderText}>OUPS!!!</Text>
+              </View>
+              <View style={styles.modalBody}>
+                <Text style={styles.modalBodyText}>
+                  Veuillez saisir des données valides
+                </Text>
+              </View>
+              <View style={styles.modalFooter}>
+                <TouchableOpacity
+                  style={styles.pressableBtnModal}
+                  onPress={() => setShowModal(false)}
+                >
+                  <Text style={styles.modalBtn}>Ok</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
 
-      <AddProduct submitHandler={submitHandler} />
-      <View>
-        <View style={styles.items}>
-          <FlatList
-            data={myProduct}
-            renderItem={({ item }) => (
-              <Product
-                name={item.name}
-                deleteProduct={deleteProduct}
-                idString={item.key}
-              />
-            )}
-          />
+        <AddProduct submitHandler={submitHandler} />
+        <View>
+          <View style={styles.items}>
+            <FlatList
+              data={myProduct}
+              renderItem={({ item }) => (
+                <Product
+                  name={item.name}
+                  deleteProduct={deleteProduct}
+                  idString={item.key}
+                />
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </DismissKeyboard>
   );
 };
 const styles = StyleSheet.create({

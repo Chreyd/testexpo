@@ -21,10 +21,10 @@ const AddProduct = (props) => {
         placeholder="Nouveau produit"
         onChangeText={(val) => inputHandler(val)}
         value={product}
-        maxLength={9}
+/*         maxLength={9}
         secureTextEntry
         editable={false}
-        multiline
+        multiline */
       />
       <Button title="Valider" onPress={handleClick}/>
     </View>
