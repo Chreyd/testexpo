@@ -16,6 +16,7 @@ import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
 import DismissKeyboard from "./components/DismissKeyboard";
 import ButtonComponent from "./components/ButtonComponent";
+import Header from "./components/Header";
 
 const App = () => {
   const [myProduct, setMyProduct] = useState([]);
@@ -49,66 +50,73 @@ const App = () => {
   return (
     <DismissKeyboard>
       <ImageBackground
-        style={styles.container}
+        style={styles.bgImage}
         source={require("./assets/image/image2.jpg")}
       >
-        <Modal
-          visible={showModal}
-          onRequestClose={() => setShowModal(false)}
-          animationType="slide"
-          hardwareAccelerated={true}
-          transparent
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContet}>
-              <View style={styles.modalHeader}>
-                <Text style={styles.modalHeaderText}>OUPS!!!</Text>
-              </View>
-              <View style={styles.modalBody}>
-                <Image
-                  source={require("./assets/image/close.png")} /* source={{uri:'https://cdn.pixabay.com/photo/2013/07/12/13/50/road-sign-147409_960_720.png'}} style={styles.imageStyle} */
-                />
-                <Text style={styles.modalBodyText}>
-                  Veuillez saisir des données valides
-                </Text>
-              </View>
-              <View style={styles.modalFooter}>
-                <ButtonComponent style={styles.pressableBtnModal} onPressHandler={() => setShowModal(false)} btnTitle='Ok'/>
-{/*                 <TouchableOpacity
+        <Header />
+        <View style={styles.container}>
+          <Modal
+            visible={showModal}
+            onRequestClose={() => setShowModal(false)}
+            animationType="slide"
+            hardwareAccelerated={true}
+            transparent
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContet}>
+                <View style={styles.modalHeader}>
+                  <Text style={styles.modalHeaderText}>OUPS!!!</Text>
+                </View>
+                <View style={styles.modalBody}>
+                  <Image
+                    source={require("./assets/image/close.png")} /* source={{uri:'https://cdn.pixabay.com/photo/2013/07/12/13/50/road-sign-147409_960_720.png'}} style={styles.imageStyle} */
+                  />
+                  <Text style={styles.modalBodyText}>
+                    Veuillez saisir des données valides
+                  </Text>
+                </View>
+                <View style={styles.modalFooter}>
+                  <ButtonComponent
+                    style={styles.pressableBtnModal}
+                    onPressHandler={() => setShowModal(false)}
+                    btnTitle="Ok"
+                  />
+                  {/*                 <TouchableOpacity
                   style={styles.pressableBtnModal}
                   onPress={() => setShowModal(false)}
                 >
                   <Text style={styles.modalBtn}>Ok</Text>
                 </TouchableOpacity> */}
+                </View>
               </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
 
-        <ButtonComponent
-          btnTitle="Nouveau produit"
-          onPressHandler={() => setDisplayModal(true)}
-          style={styles.addProductBtn}
-        />
-        {/* <Button title="Nouveau produit" onPress={() => setDisplayModal(true)} /> */}
+          <ButtonComponent
+            btnTitle="Nouveau produit"
+            onPressHandler={() => setDisplayModal(true)}
+            style={styles.addProductBtn}
+          />
+          {/* <Button title="Nouveau produit" onPress={() => setDisplayModal(true)} /> */}
 
-        <AddProduct
-          submitHandler={submitHandler}
-          displayModal={displayModal}
-          cancelNewProduct={cancelNewProduct}
-        />
-        <View>
-          <View style={styles.items}>
-            <FlatList
-              data={myProduct}
-              renderItem={({ item }) => (
-                <Product
-                  name={item.name}
-                  deleteProduct={deleteProduct}
-                  idString={item.key}
-                />
-              )}
-            />
+          <AddProduct
+            submitHandler={submitHandler}
+            displayModal={displayModal}
+            cancelNewProduct={cancelNewProduct}
+          />
+          <View>
+            <View style={styles.items}>
+              <FlatList
+                data={myProduct}
+                renderItem={({ item }) => (
+                  <Product
+                    name={item.name}
+                    deleteProduct={deleteProduct}
+                    idString={item.key}
+                  />
+                )}
+              />
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -119,7 +127,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 40,
-    paddingTop: 60,
+  },
+  bgImage: {
+    flex: 1,
   },
   modalContainer: {
     flex: 1,
@@ -181,7 +191,8 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 50,
     borderWidth: 3,
-    borderColor: '#fff'
+    borderColor: "#fff",
+    marginBottom: 20
   },
 });
 

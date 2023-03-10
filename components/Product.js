@@ -23,12 +23,14 @@ const Product = ({ name, deleteProduct, idString }) => {
 const styles = StyleSheet.create({
   items: {
     marginTop: 10,
+    
   },
   element: {
-    backgroundColor: "#ffbfc1",
+    backgroundColor: "#ff69b4",
     padding: 20,
     fontSize: 17,
     marginVertical: 6,
+    borderRadius: 5
   },
 });
 
