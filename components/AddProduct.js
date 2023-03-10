@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Modal } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Modal, ImageBackground } from "react-native";
 import ButtonComponent from "./ButtonComponent";
 
 const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
@@ -15,7 +15,7 @@ const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
 
   return (
     <Modal visible={displayModal} animationType="slide">
-      <View style={styles.inputContainer}>
+      <ImageBackground style={styles.inputContainer} source={require('../assets/image/image2.jpg')}>
         <TextInput
           style={styles.textInput}
           placeholder="Nouveau produit"
@@ -49,7 +49,7 @@ const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
             />
           </View> */}
         </View>
-      </View>
+      </ImageBackground>
     </Modal>
   );
 };
