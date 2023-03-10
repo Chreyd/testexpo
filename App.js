@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  ImageBackground
 } from "react-native";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
@@ -48,7 +49,7 @@ const App = () => {
 
   return (
     <DismissKeyboard>
-      <View style={styles.container}>
+      <ImageBackground style={styles.container} source={require("./assets/image/image2.jpg")} >
         <Modal
           visible={showModal}
           onRequestClose={() => setShowModal(false)}
@@ -100,7 +101,7 @@ const App = () => {
             />
           </View>
         </View>
-      </View>
+      </ImageBackground>
     </DismissKeyboard>
   );
 };
