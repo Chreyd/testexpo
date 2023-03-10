@@ -9,6 +9,7 @@ import {
   Pressable,
   TouchableOpacity,
   Button,
+  Image,
 } from "react-native";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
@@ -30,6 +31,8 @@ const App = () => {
       ]);
     } else {
       setShowModal(true);
+      setDisplayModal(false);
+
     }
   };
 
@@ -59,6 +62,7 @@ const App = () => {
                 <Text style={styles.modalHeaderText}>OUPS!!!</Text>
               </View>
               <View style={styles.modalBody}>
+                <Image source={require('./assets/image/close.png')}  /* source={{uri:'https://cdn.pixabay.com/photo/2013/07/12/13/50/road-sign-147409_960_720.png'}} style={styles.imageStyle} */ />
                 <Text style={styles.modalBodyText}>
                   Veuillez saisir des données valides
                 </Text>
@@ -156,6 +160,10 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     padding: 16,
+  },
+  imageStyle:{
+    height: 100,
+    width: 100
   },
 });
 
