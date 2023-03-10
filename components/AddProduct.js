@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Modal } from "react-native";
+import ButtonComponent from "./ButtonComponent";
 
 const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
   const [product, setProduct] = useState("");
@@ -27,7 +28,17 @@ const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
           focusable={true}
         />
         <View style={styles.btnContainer}>
-          <View style={styles.btnBlue}>
+          <ButtonComponent
+            onPressHandler={handleClick}
+            btnTitle="Valider"
+            style={styles.btnBlue}
+          />
+          <ButtonComponent
+            onPressHandler={cancelNewProduct}
+            btnTitle="Annuler"
+            style={styles.btnTomato}
+          />
+          {/*           <View style={styles.btnBlue}>
             <Button title="Valider" onPress={handleClick} />
           </View>
           <View style={styles.btnTomato}>
@@ -36,7 +47,7 @@ const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
               onPress={() => cancelNewProduct()}
               color="tomato"
             />
-          </View>
+          </View> */}
         </View>
       </View>
     </Modal>
@@ -58,17 +69,21 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 9,
   },
-  btnContainer:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-   btnBlue:{
-width: '45%'
-   },
-  btnTomato:{
-    width: '45%'
-  }
+  btnBlue: {
+    backgroundColor: 'seagreen',
+    width: 150,
+    borderRadius: 5,
+  },
+  btnTomato: {
+     width: 150,
+     borderRadius: 5,
+    backgroundColor: 'tomato'
+  },
 });
 
 export default AddProduct;

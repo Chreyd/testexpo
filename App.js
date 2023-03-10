@@ -10,11 +10,12 @@ import {
   TouchableOpacity,
   Button,
   Image,
-  ImageBackground
+  ImageBackground,
 } from "react-native";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
 import DismissKeyboard from "./components/DismissKeyboard";
+import ButtonComponent from "./components/ButtonComponent";
 
 const App = () => {
   const [myProduct, setMyProduct] = useState([]);
@@ -22,7 +23,6 @@ const App = () => {
   const [displayModal, setDisplayModal] = useState(false);
 
   const submitHandler = (product) => {
-
     if (product != "") {
       const idString = Date.now().toString();
       setDisplayModal(false);
@@ -33,7 +33,6 @@ const App = () => {
     } else {
       setShowModal(true);
       setDisplayModal(false);
-
     }
   };
 
@@ -49,7 +48,10 @@ const App = () => {
 
   return (
     <DismissKeyboard>
-      <ImageBackground style={styles.container} source={require("./assets/image/image2.jpg")} >
+      <ImageBackground
+        style={styles.container}
+        source={require("./assets/image/image2.jpg")}
+      >
         <Modal
           visible={showModal}
           onRequestClose={() => setShowModal(false)}
@@ -63,24 +65,32 @@ const App = () => {
                 <Text style={styles.modalHeaderText}>OUPS!!!</Text>
               </View>
               <View style={styles.modalBody}>
-                <Image source={require('./assets/image/close.png')}  /* source={{uri:'https://cdn.pixabay.com/photo/2013/07/12/13/50/road-sign-147409_960_720.png'}} style={styles.imageStyle} */ />
+                <Image
+                  source={require("./assets/image/close.png")} /* source={{uri:'https://cdn.pixabay.com/photo/2013/07/12/13/50/road-sign-147409_960_720.png'}} style={styles.imageStyle} */
+                />
                 <Text style={styles.modalBodyText}>
                   Veuillez saisir des données valides
                 </Text>
               </View>
               <View style={styles.modalFooter}>
-                <TouchableOpacity
+                <ButtonComponent style={styles.pressableBtnModal} onPressHandler={() => setShowModal(false)} btnTitle='Ok'/>
+{/*                 <TouchableOpacity
                   style={styles.pressableBtnModal}
                   onPress={() => setShowModal(false)}
                 >
                   <Text style={styles.modalBtn}>Ok</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
           </View>
         </Modal>
 
-        <Button title="Nouveau produit" onPress={() => setDisplayModal(true)} />
+        <ButtonComponent
+          btnTitle="Nouveau produit"
+          onPressHandler={() => setDisplayModal(true)}
+          style={styles.addProductBtn}
+        />
+        {/* <Button title="Nouveau produit" onPress={() => setDisplayModal(true)} /> */}
 
         <AddProduct
           submitHandler={submitHandler}
@@ -162,9 +172,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 16,
   },
-  imageStyle:{
+  imageStyle: {
     height: 100,
-    width: 100
+    width: 100,
+  },
+  addProductBtn: {
+    backgroundColor: "darkred",
+    padding: 20,
+    borderRadius: 50,
+    borderWidth: 3,
+    borderColor: '#fff'
   },
 });
 
