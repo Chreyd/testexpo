@@ -8,6 +8,7 @@ import {
   Text,
   Pressable,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
@@ -16,10 +17,13 @@ import DismissKeyboard from "./components/DismissKeyboard";
 const App = () => {
   const [myProduct, setMyProduct] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
 
   const submitHandler = (product) => {
+
     if (product != "") {
       const idString = Date.now().toString();
+      setDisplayModal(false);
       setMyProduct((currentMyProduct) => [
         { key: idString, name: product },
         ...currentMyProduct,
@@ -27,6 +31,10 @@ const App = () => {
     } else {
       setShowModal(true);
     }
+  };
+
+  const cancelNewProduct = () => {
+    setDisplayModal(false);
   };
 
   const deleteProduct = (key) => {
@@ -67,7 +75,13 @@ const App = () => {
           </View>
         </Modal>
 
-        <AddProduct submitHandler={submitHandler} />
+        <Button title="Nouveau produit" onPress={() => setDisplayModal(true)} />
+
+        <AddProduct
+          submitHandler={submitHandler}
+          displayModal={displayModal}
+          cancelNewProduct={cancelNewProduct}
+        />
         <View>
           <View style={styles.items}>
             <FlatList

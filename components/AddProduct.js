@@ -1,39 +1,53 @@
-import React ,{useState, useEffect} from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TextInput, Button, Modal } from "react-native";
 
-const AddProduct = (props) => {
-
-
+const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
   const [product, setProduct] = useState("");
   const inputHandler = (val) => {
     setProduct(val);
   };
 
-  const handleClick= ()=>{
-    props.submitHandler(product);
-    setProduct('')
-  }
+  const handleClick = () => {
+    submitHandler(product);
+    setProduct("");
+  };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Nouveau produit"
-        onChangeText={(val) => inputHandler(val)}
-        value={product}
-/*         maxLength={9}
+    <Modal visible={displayModal} animationType="slide">
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Nouveau produit"
+          onChangeText={(val) => inputHandler(val)}
+          value={product}
+          /*         maxLength={9}
         secureTextEntry
         editable={false}
         multiline */
-      />
-      <Button title="Valider" onPress={handleClick}/>
-    </View>
+          focusable={true}
+        />
+        <View style={styles.btnContainer}>
+          <View style={styles.btnBlue}>
+            <Button title="Valider" onPress={handleClick} />
+          </View>
+          <View style={styles.btnTomato}>
+            <Button
+              title="retour"
+              onPress={() => cancelNewProduct()}
+              color="tomato"
+            />
+          </View>
+        </View>
+      </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   inputContainer: {
-    paddingBottom: 10,
+    padding: 10,
+    flex: 1,
+    justifyContent: "center",
   },
   textInput: {
     borderColor: "grey",
@@ -42,9 +56,19 @@ const styles = StyleSheet.create({
     paddingLeft: 9,
     fontSize: 18,
     borderRadius: 5,
-    flexGrow: 1,
     marginBottom: 9,
   },
+  btnContainer:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+   btnBlue:{
+width: '45%'
+   },
+  btnTomato:{
+    width: '45%'
+  }
 });
 
 export default AddProduct;
