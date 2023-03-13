@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 30,
     padding: 9,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
+    fontFamily: 'pacifico-Regular'
   },
 });
 
