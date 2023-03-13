@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     width: 100,
   },
   addProductBtn: {
-    backgroundColor: "darkred",
+    backgroundColor: colors.success,
     padding: 20,
     borderRadius: 50,
     borderWidth: 3,
@@ -219,5 +219,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+
 
 export default App;

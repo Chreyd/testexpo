@@ -9,11 +9,14 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
+import { FontAwesome } from "@expo/vector-icons";
+import colors from "../constants/colors";
 
 const Product = ({ name, deleteProduct, idString }) => {
   return (
     <Pressable onPress={() => deleteProduct(idString)}>
       <View style={styles.items}>
+        <FontAwesome name="remove" size={30} color={colors.white} />
         <Text style={styles.element}>{name}</Text>
       </View>
     </Pressable>
@@ -23,14 +26,17 @@ const Product = ({ name, deleteProduct, idString }) => {
 const styles = StyleSheet.create({
   items: {
     marginTop: 10,
-    backgroundColor: "#ff69b4",
-    borderRadius: 5
-
+    backgroundColor: colors.danger,
+    borderRadius: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 15,
   },
   element: {
     padding: 20,
     fontSize: 17,
-    marginVertical: 6,
+    marginLeft: 20,
+    color: colors.white,
   },
 });
 

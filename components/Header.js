@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
   logo: {
     color: "#fff",
     //fontWeight: 'bold',
-    fontFamily: 'pacifico-Regular'
-    // fontFamily: 'BangersRegular'
+    fontFamily: 'pacifico-Regular',
+    // fontFamily: 'BangersRegular',
   },
 });
 
