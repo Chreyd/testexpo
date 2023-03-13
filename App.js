@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
+import { useFonts, Bangers_400Regular } from "@expo-google-fonts/bangers";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
 import DismissKeyboard from "./components/DismissKeyboard";
@@ -21,28 +22,29 @@ import ButtonComponent from "./components/ButtonComponent";
 import Header from "./components/Header";
 import colors from "./constants/colors";
 
-const fetchFonts = () => {
-  return Font.loadAsync({
-    "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
-    "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
-    "pacifico-Regular": require("./assets/fonts/Pacifico-Regular.ttf"),
-  });
-};
+// const fetchFonts = () => {
+//   return Font.loadAsync({
+//     "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
+//     "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
+//     "pacifico-Regular": require("./assets/fonts/Pacifico-Regular.ttf"),
+//   });
+// };
 
 const App = () => {
   const [myProduct, setMyProduct] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  // const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  const [fontsLoaded] = useFonts({
+    BangersRegular: Bangers_400Regular,
+    "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
+    "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
+    "pacifico-Regular": require("./assets/fonts/Pacifico-Regular.ttf"),
+  });
 
   if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(error) => console.log(error)}
-      />
-    );
+    return <AppLoading />;
   }
 
   const submitHandler = (product) => {

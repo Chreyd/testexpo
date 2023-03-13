@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     padding: 9,
     //fontWeight: 'bold',
-    fontFamily: 'pacifico-Regular'
+    // fontFamily: 'pacifico-Regular'
+    fontFamily: 'BangersRegular'
   },
 });
 
