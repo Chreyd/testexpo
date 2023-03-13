@@ -15,7 +15,10 @@ import Colors from "../constants/colors";
 const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
   const [product, setProduct] = useState("");
   const inputHandler = (val) => {
-    setProduct(val);
+
+    const regex = /[^a-z]/gi;
+    setProduct(val.replace(regex, ''));
+
   };
 
   const handleClick = () => {
@@ -34,6 +37,7 @@ const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
           textPlaceholder="Nouveau produit"
           onChangeHandler={inputHandler}
           inputValue={product}
+          maxLength={15}
         />
 
         <View style={styles.btnContainer}>
