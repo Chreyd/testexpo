@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import TitleText from "./TitleText";
+import AppStyles from "../constants/AppStyles";
+
 
 const Header = () => {
   return (
     <View style={styles.headerWrapper}>
-      <TitleText style={styles.logo}>Liste de Courses</TitleText>
+      <TitleText style={AppStyles.headerOne}>Liste de Courses</TitleText>
     </View>
   );
 };
@@ -18,12 +20,6 @@ const styles = StyleSheet.create({
     minHeight: 30,
     paddingTop: 25,
     paddingBottom: 15,
-  },
-  logo: {
-    color: "#fff",
-    //fontWeight: 'bold',
-    fontFamily: 'pacifico-Regular',
-    // fontFamily: 'BangersRegular',
   },
 });
 

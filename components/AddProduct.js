@@ -11,6 +11,8 @@ import {
 import ButtonComponent from "./ButtonComponent";
 import Input from "./Input";
 import Colors from "../constants/colors";
+import BodyText from "./BodyText";
+
 
 const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
   const [product, setProduct] = useState("");
@@ -33,6 +35,8 @@ const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
         style={styles.inputContainer}
         source={require("../assets/image/image2.jpg")}
       >
+
+        <BodyText>Veuillez saisir l'article  </BodyText>
         <Input
           style={styles.textInput}
           textPlaceholder="Nouveau produit"
