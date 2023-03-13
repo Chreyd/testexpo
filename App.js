@@ -17,6 +17,7 @@ import Product from "./components/Product";
 import DismissKeyboard from "./components/DismissKeyboard";
 import ButtonComponent from "./components/ButtonComponent";
 import Header from "./components/Header";
+import colors from "./constants/colors";
 
 const App = () => {
   const [myProduct, setMyProduct] = useState([]);
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.2)",
   },
   modalContet: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     width: "90%",
     height: 250,
     borderRadius: 10,
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
-    borderBottomColor: "lightgray",
+    borderBottomColor: colors.secondary,
     borderBottomWidth: 1,
   },
   modalHeaderText: {

@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Modal, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Modal,
+  ImageBackground,
+} from "react-native";
 import ButtonComponent from "./ButtonComponent";
+import Input from "./Input";
+import Colors from "../constants/colors";
 
 const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
   const [product, setProduct] = useState("");
@@ -15,18 +25,17 @@ const AddProduct = ({ submitHandler, displayModal, cancelNewProduct }) => {
 
   return (
     <Modal visible={displayModal} animationType="slide">
-      <ImageBackground style={styles.inputContainer} source={require('../assets/image/image2.jpg')}>
-        <TextInput
+      <ImageBackground
+        style={styles.inputContainer}
+        source={require("../assets/image/image2.jpg")}
+      >
+        <Input
           style={styles.textInput}
-          placeholder="Nouveau produit"
-          onChangeText={(val) => inputHandler(val)}
-          value={product}
-          /*         maxLength={9}
-        secureTextEntry
-        editable={false}
-        multiline */
-          focusable={true}
+          textPlaceholder="Nouveau produit"
+          onChangeHandler={inputHandler}
+          inputValue={product}
         />
+
         <View style={styles.btnContainer}>
           <ButtonComponent
             onPressHandler={handleClick}
@@ -61,13 +70,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textInput: {
-    borderColor: "grey",
-    borderWidth: 1,
     padding: 5,
-    paddingLeft: 9,
-    fontSize: 18,
-    borderRadius: 5,
-    marginBottom: 9,
+    fontSize: 19,
+    borderRadius: 30,
+    marginBottom: 15,
+    textAlign: "center",
+    height: 50,
   },
   btnContainer: {
     flexDirection: "row",
@@ -75,14 +83,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   btnBlue: {
-    backgroundColor: 'seagreen',
+    backgroundColor: "seagreen",
     width: 150,
     borderRadius: 5,
   },
   btnTomato: {
-     width: 150,
-     borderRadius: 5,
-    backgroundColor: 'tomato'
+    width: 150,
+    borderRadius: 5,
+    backgroundColor: "tomato",
   },
 });
 
